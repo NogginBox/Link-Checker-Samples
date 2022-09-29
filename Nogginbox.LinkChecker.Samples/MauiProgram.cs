@@ -19,6 +19,9 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+        builder.Services.AddTransient<Pages.ChartsPage>();
+        builder.Services.AddTransient<ViewModels.ChartPageViewModel>();
+
+        return builder.Build();
 	}
 }
