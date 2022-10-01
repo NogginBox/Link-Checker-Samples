@@ -1,13 +1,19 @@
 ﻿<?xml version = "1.0" encoding = "UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Nogginbox.LinkChecker.Samples"
+             xmlns:converter="clr-namespace:Nogginbox.LinkChecker.Samples.Maui.ValueConverters"
              x:Class="Nogginbox.LinkChecker.Samples.App">
+
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+
+                <ResourceDictionary>
+                    <converter:NumberToAlternatingColourValueConverter EvenNumberColour="#eee" OddNumberColour="#AFCAE4" x:Key="NumberToAlternatingColourValueConverter" />
+                </ResourceDictionary>
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

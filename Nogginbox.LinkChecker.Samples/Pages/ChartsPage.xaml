@@ -1,24 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Nogginbox.LinkChecker.Samples.Pages.ChartsPage">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:lchart="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+            xmlns:vm="clr-namespace:Nogginbox.LinkChecker.Samples.ViewModels"
+            x:DataType="vm:ChartPageViewModel"
+            x:Class="Nogginbox.LinkChecker.Samples.Pages.ChartsPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <VerticalStackLayout
+        Margin="20">
+        <Label FontSize="Header" FontAttributes="Bold" LineHeight="1">HTTP Status Summary</Label>
 
-            <Label
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center">
-                Scan Summary
-            </Label>
+        <lchart:PieChart
+            HeightRequest="200"
+            Margin="0,20"
+            Series="{Binding ChartData}">
+        </lchart:PieChart>
+
+        <StackLayout BindableLayout.ItemsSource="{Binding Lines}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="vm:LineViewModel">
+                    <Grid
+                        ColumnDefinitions="5*, *"
+                        BackgroundColor="{Binding LineNumber, Converter={StaticResource NumberToAlternatingColourValueConverter}}">
+                        <Grid.Resources>
+                            <Style x:Key="RowItem" TargetType="Label">
+                                <Setter Property="Padding" Value="10" />
+                                <Setter Property="FontSize" Value="14" />
+                            </Style>
+                        </Grid.Resources>
+                        <Label Grid.Column="0" Text="{Binding Name}" Style="{StaticResource RowItem}" />
+                        <Label Grid.Column="1" Text="{Binding Value}" Style="{StaticResource RowItem}" />
+                    </Grid>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
 
 
 
-        </VerticalStackLayout>
-    </ScrollView>
+        <Grid ColumnDefinitions="5*, *" Margin="0,0,0,30">
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="FontSize" Value="15" />
+                    <Setter Property="FontAttributes" Value="Bold" />
+                </Style>
+            </Grid.Resources>
+            <Label>Total:</Label>
+            <Label Grid.Column="1"  Text="{Binding Total}" />
+        </Grid>
+
+
+    </VerticalStackLayout>
+
 
 </ContentPage>

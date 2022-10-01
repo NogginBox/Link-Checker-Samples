@@ -4,8 +4,14 @@ public partial class App : Application
 {
 	public App()
 	{
-		InitializeComponent();
+        AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+        InitializeComponent();
 
 		MainPage = new AppShell();
 	}
+
+    private void OnUnhandledException(object? sender, UnhandledExceptionEventArgs e)
+    {
+        System.Diagnostics.Debug.WriteLine($"Unhandled - Error: {e.ExceptionObject}");
+    }
 }

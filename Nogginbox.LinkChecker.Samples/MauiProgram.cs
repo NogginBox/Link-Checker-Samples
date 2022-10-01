@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace Nogginbox.LinkChecker.Samples;
 
@@ -8,7 +9,8 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
-			.UseMauiApp<App>()
+            .UseSkiaSharp(true)
+            .UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -19,6 +21,9 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+        builder.Services.AddTransient<Pages.ChartsPage>();
+        builder.Services.AddTransient<ViewModels.ChartPageViewModel>();
+
+        return builder.Build();
 	}
 }
