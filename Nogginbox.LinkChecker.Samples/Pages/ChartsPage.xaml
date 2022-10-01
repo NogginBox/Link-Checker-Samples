@@ -6,33 +6,30 @@
             x:DataType="vm:ChartPageViewModel"
             x:Class="Nogginbox.LinkChecker.Samples.Pages.ChartsPage">
 
-    <VerticalStackLayout WidthRequest="400">
-        <Label>HTTP Status Summary</Label>
+    <VerticalStackLayout
+        Margin="20">
+        <Label FontSize="Header" FontAttributes="Bold" LineHeight="1">HTTP Status Summary</Label>
 
-
-        <!--<lchart:PieChart
+        <lchart:PieChart
             HeightRequest="200"
-            Margin="0,0,0,20"
+            Margin="0,20"
             Series="{Binding ChartData}">
-        </lchart:PieChart>-->
-
+        </lchart:PieChart>
 
         <StackLayout BindableLayout.ItemsSource="{Binding Lines}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="vm:LineViewModel">
-                    <Grid ColumnDefinitions="5*, *" BackgroundColor="{Binding LineNumber, Converter={StaticResource NumberToAlternatingColourValueConverter}}">
+                    <Grid
+                        ColumnDefinitions="5*, *"
+                        BackgroundColor="{Binding LineNumber, Converter={StaticResource NumberToAlternatingColourValueConverter}}">
                         <Grid.Resources>
-                            <Style x:Key="RowLabel" TargetType="Label" BaseResourceKey="ResultsRow">
+                            <Style x:Key="RowItem" TargetType="Label">
                                 <Setter Property="Padding" Value="10" />
                                 <Setter Property="FontSize" Value="14" />
                             </Style>
                         </Grid.Resources>
-                        <Border Grid.Column="0">
-                            <Label Text="{Binding Name}" Style="{StaticResource RowLabel}" />
-                        </Border>
-                        <Border Grid.Column="1">
-                            <Label Text="{Binding Value}" Style="{StaticResource RowLabel}" />
-                        </Border>
+                        <Label Grid.Column="0" Text="{Binding Name}" Style="{StaticResource RowItem}" />
+                        <Label Grid.Column="1" Text="{Binding Value}" Style="{StaticResource RowItem}" />
                     </Grid>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
@@ -42,7 +39,7 @@
 
         <Grid ColumnDefinitions="5*, *" Margin="0,0,0,30">
             <Grid.Resources>
-                <Style TargetType="Label" BaseResourceKey="ResultsRow">
+                <Style TargetType="Label">
                     <Setter Property="Padding" Value="10" />
                     <Setter Property="FontSize" Value="15" />
                     <Setter Property="FontAttributes" Value="Bold" />

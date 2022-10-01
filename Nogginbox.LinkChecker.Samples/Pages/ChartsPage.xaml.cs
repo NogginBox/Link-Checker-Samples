@@ -6,7 +6,7 @@ public partial class ChartsPage : ContentPage
 {
 	public ChartsPage(ChartPageViewModel viewModel)
 	{
+		BindingContext = viewModel;
 		InitializeComponent();
-        BindingContext = viewModel;
     }
 }
